@@ -21,7 +21,7 @@ public class WallAvoidance : MonoBehaviour {
 		if (Physics.Raycast (transform.position, transform.forward, out hit, 20)) {
 			if (hit.transform != transform && hit.transform != player.transform) {
 				Debug.DrawLine (transform.position, hit.point);
-				dir += hit.normal * 20;
+				dir += hit.normal * 10;
 			}	
 		}
 
@@ -34,14 +34,14 @@ public class WallAvoidance : MonoBehaviour {
 		if (Physics.Raycast (rightR, transform.forward, out hit, 20)) {
 			if (hit.transform != transform && hit.transform != player.transform) {
 				Debug.DrawLine (rightR, hit.point, Color.red);
-				dir += hit.normal * 20;
+				dir += hit.normal * 10;
 			}	
 		}
 
 		if (Physics.Raycast (leftR, transform.forward, out hit, 20)) {
 			if (hit.transform != transform && hit.transform != player.transform) {
 				Debug.DrawLine (leftR, hit.point, Color.blue);
-				dir += hit.normal * 20;
+				dir += hit.normal * 10;
 			}	
 		}
 

@@ -1,10 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Seek.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\FollowPath.cs">
     <Files>
-      <File FileName="Assets\Seek.cs" Line="21" Column="61" />
-      <File FileName="Assets\PlayerMovement.cs" Line="16" Column="26" />
-      <File FileName="Assets\EvadeObstacles.cs" Line="27" Column="33" />
+      <File FileName="Assets\Grid.cs" Line="219" Column="61" />
+      <File FileName="Assets\Node.cs" Line="1" Column="1" />
+      <File FileName="Assets\APathFinding.cs" Line="97" Column="4" />
+      <File FileName="Assets\FollowPath.cs" Line="34" Column="13" />
+      <File FileName="Assets\Seek.cs" Line="1" Column="1" />
+      <File FileName="Assets\DynamicSeek.cs" Line="19" Column="104" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

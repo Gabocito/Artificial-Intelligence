@@ -51,8 +51,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\APathFinding.cs" />
      <Compile Include="Assets\DynamicSeek.cs" />
      <Compile Include="Assets\EvadeObstacles.cs" />
+     <Compile Include="Assets\Flee.cs" />
+     <Compile Include="Assets\FollowPath.cs" />
+     <Compile Include="Assets\Grid.cs" />
+     <Compile Include="Assets\Node.cs" />
      <Compile Include="Assets\PlayerMovement.cs" />
      <Compile Include="Assets\Seek.cs" />
      <Compile Include="Assets\ShootProyectile.cs" />
