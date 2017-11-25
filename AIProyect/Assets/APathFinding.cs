@@ -12,6 +12,8 @@ public class APathFinding: MonoBehaviour {
 	private Node target;
 	private GameObject player;
 	private GameObject platform;
+	private WallAvoidance avoid;
+	private Rigidbody rb;
 
 	void search(Node startNode, Node targetNode) {
 		
@@ -82,18 +84,25 @@ public class APathFinding: MonoBehaviour {
 		grid = platform.GetComponent<Grid> ();
 		follow = GetComponent<FollowPath>();
 		player = GameObject.FindGameObjectWithTag("Player");
+		avoid = GetComponent<WallAvoidance> ();
+		rb = GetComponent<Rigidbody> (); 
 	}
 
 	void Update() {
 		current = grid.NodeFromWorldPoint (transform.position);
 		target = grid.NodeFromWorldPoint (player.transform.position);
-		search (current, target);
-		if (!current.position.Equals(target.position)) {
-			List<Vector3> points = new List<Vector3> ();
-			foreach (Node n in path) {
-				points.Add (n.position);
+		if (!current.position.Equals (target.position)) {
+			search (current, target);
+			if (!current.position.Equals (target.position)) {
+				List<Vector3> points = new List<Vector3> ();
+				foreach (Node n in path) {
+					points.Add (n.position);
+				}
+				follow.Follow (points);
 			}
-			follow.Follow (points);
+		} else {
+			rb.velocity = new Vector3 (0, 0, 0);
+			avoid.enabled = false;
 		}
 	}
 

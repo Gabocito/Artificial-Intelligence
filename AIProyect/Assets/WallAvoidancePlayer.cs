@@ -2,28 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WallAvoidance : MonoBehaviour {
+public class WallAvoidancePlayer : MonoBehaviour {
 
-	private Vector3 target; 
+	private GameObject player; 
 	private Rigidbody rb; 
 
 	// Use this for initialization
 	void Start () {
-//		target = GameObject.FindGameObjectWithTag("Player");
+		player = GameObject.FindGameObjectWithTag("Player");
 		rb = GetComponent<Rigidbody> (); 
-	}
-
-	public void setTarget(Vector3 point) {
-		target = point;
 	}
 
 	// Update is called once per frame
 	void Update () {
-		Vector3 dir = Vector3.Normalize(target - transform.position);
+		Vector3 dir = Vector3.Normalize(player.transform.position - transform.position);
 		RaycastHit hit;
 
 		if (Physics.Raycast (transform.position, transform.forward, out hit, 20)) {
-			if (hit.transform.position != transform.position && hit.transform.position != target) {
+			if (hit.transform != transform && hit.transform != player.transform) {
 				Debug.DrawLine (transform.position, hit.point);
 				dir += hit.normal * 10;
 			}	
@@ -36,14 +32,14 @@ public class WallAvoidance : MonoBehaviour {
 		leftR.x += 1;
 
 		if (Physics.Raycast (rightR, transform.forward, out hit, 20)) {
-			if (hit.transform.position != transform.position && hit.transform.position != target) {
+			if (hit.transform != transform && hit.transform != player.transform) {
 				Debug.DrawLine (rightR, hit.point, Color.red);
 				dir += hit.normal * 10;
 			}	
 		}
 
 		if (Physics.Raycast (leftR, transform.forward, out hit, 20)) {
-			if (hit.transform.position != transform.position && hit.transform.position != target) {
+			if (hit.transform != transform && hit.transform != player.transform) {
 				Debug.DrawLine (leftR, hit.point, Color.blue);
 				dir += hit.normal * 10;
 			}	

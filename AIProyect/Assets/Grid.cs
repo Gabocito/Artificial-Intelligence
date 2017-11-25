@@ -188,9 +188,17 @@ public class Grid : MonoBehaviour {
 		return null;
 	}
 
-	public List<Node> GetNeighbors(Node n) {
-		List<Node> neighbors = new List<Node> ();
+	private float distanceBetweenPoints (Vector3 p1, Vector3 p2){
+		return Mathf.Sqrt( Mathf.Pow (p1.x - p2.x, 2) +
+			Mathf.Pow (p1.y - p2.y, 2) +
+			Mathf.Pow (p1.z - p2.z, 2));
+	}
 
+	public List<Node> GetNeighbors(Node n) {
+//		Debug.Log ("nodo:");
+//		Debug.Log (n.position);
+		List<Node> neighbors = new List<Node> ();
+		int numberEqualsVertices = 0;
 		for (int i = 0; i < grid.Length; i++) {
 			if (grid[i].position == n.position) {
 				continue;
@@ -205,8 +213,66 @@ public class Grid : MonoBehaviour {
 				}
 			}
 		}
+//		for (int i = 0; i < grid.Length; i++) {
+//			if (grid [i].position == n.position) {
+//				continue;
+//			}
+//
+//			Vector2 vA1 = n.vertices [0];
+//			Vector2 vA2 = n.vertices [1];
+//			Vector2 vA3 = n.vertices [2];
+//
+//			Vector2 vB1 = grid[i].vertices [0];
+//			Vector2 vB2 = grid[i].vertices [1];
+//			Vector2 vB3 = grid[i].vertices [2];
+
+//			if (vA1.Equals(vB1) || vA1.Equals(vB2) || vA1.Equals(vB3)){
+//				numberEqualsVertices += 1; 
+//			}
+//
+//			if (vA2.Equals(vB1) || vA2.Equals(vB2) || vA2.Equals(vB3)){
+//				numberEqualsVertices += 1; 
+//			}
+//
+//			if (vA3.Equals(vB1) || vA3.Equals(vB2) || vA3.Equals(vB3)){
+//				numberEqualsVertices += 1; 
+//			}
+
+//			if (numberEqualsVertices >= 2) {
+//				neighbors.Add (grid [i]);
+//			} else {
+//				if (( isNeighbor(vA1, vA2, vB1, vB2) || isNeighbor(vA1, vA2, vB1, vB3) || isNeighbor(vA1, vA2, vB2, vB3)) ||
+//				    ( isNeighbor(vA1, vA3, vB1, vB2) || isNeighbor(vA1, vA3, vB1, vB3) || isNeighbor(vA1, vA3, vB2, vB3)) ||
+//					( isNeighbor(vA2, vA3, vB1, vB2) || isNeighbor(vA2, vA3, vB1, vB3) || isNeighbor(vA2, vA3, vB2, vB3))){
+//					neighbors.Add (grid[i]);
+//				}
+//			}
+//		}
+
+//		Debug.Log ("vecinos:");
+//		Debug.Log (neighbors.Count);
+
 		return neighbors;
 	}
+
+	private bool isNeighbor(Vector2 v1, Vector2 v2, Vector2 v3, Vector2 v4) {
+		float m = (v2.y - v1.y) / (v2.x - v1.x);
+		float b = - m * v1.x + v1.y;
+		if ((v3.y == m * v3.x + b) && (v4.y == m * v4.x + b)) {
+			return true;
+		}
+		return false;
+	}
+
+//	private bool insideLine(Vector2 v1, Vector2 v2, Vector3 v3) {
+//		
+//		Vector3 b1 = new Vector3 (v1.x, 0, v1.y); 
+//		Vector3 b2 = new Vector3 (v2.x, 0, v2.y); 
+//		Vector3 b3 = new Vector3 (v3.x, 0, v3.y); 
+//
+//		return (distanceBetweenPoints (b1, b2) == (distanceBetweenPoints (b1, b3) + distanceBetweenPoints (b3, b2)));
+//	}
+	
 
 	void OnDrawGizmos() {
 		Gizmos.DrawWireCube(transform.position,new Vector3(gridWorldSize.x,1,gridWorldSize.y));
