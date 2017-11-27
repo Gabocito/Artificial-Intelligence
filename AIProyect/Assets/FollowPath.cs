@@ -39,6 +39,7 @@ public class FollowPath : MonoBehaviour {
 			} 
 		} else {
 //			rb.velocity = Vector3.Normalize (target - transform.position) * speed;
+			avoid = GetComponent<WallAvoidance> ();
 			avoid.setTarget(target);
 			avoid.enabled = true;
 			Debug.DrawRay (transform.position, transform.forward * 2);

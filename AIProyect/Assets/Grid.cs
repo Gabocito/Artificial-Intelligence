@@ -19,18 +19,26 @@ public class Grid : MonoBehaviour {
 		List<Vector2[]> triangles = GetTriangles ();
 		int i = 0;
 		int[] notWalkable = new int[24] { 4, 5, 6, 7, 9, 22, 24, 25, 27, 28, 29, 59, 60, 65, 66, 67, 70, 97, 79, 80, 101, 102, 103, 104 };
+		int[] stalkables = new int[8] { 2, 31, 32, 41, 90, 94, 105, 108};
 
 		foreach (Vector2[] t in triangles) {
 			float x = (t[0][0] + t[1][0] + t[2][0]) / 3;
 			float y = (t[0][1] + t[1][1] + t[2][1]) / 3;
 			bool walkable = true;
+			bool stalkable = false;
 			for (int j = 0; j < notWalkable.Length; j++) {
 				if (i == notWalkable [j]) {
 					walkable = false;
 					break;
 				}
 			}
-			grid[i] = new Node(walkable, worldBottomLeft + Vector3.right * ( x * offSet) + Vector3.forward * ( y * offSet), t[0], t[1], t[2]);
+			for (int j = 0; j < stalkables.Length; j++) {
+				if (i == stalkables [j]) {
+					stalkable = true;
+					break;
+				}
+			}
+			grid[i] = new Node(walkable, stalkable, worldBottomLeft + Vector3.right * ( x * offSet) + Vector3.forward * ( y * offSet), t[0], t[1], t[2]);
 			i++;
 		}
 	}
@@ -198,7 +206,7 @@ public class Grid : MonoBehaviour {
 //		Debug.Log ("nodo:");
 //		Debug.Log (n.position);
 		List<Node> neighbors = new List<Node> ();
-		int numberEqualsVertices = 0;
+//		int numberEqualsVertices = 0;
 		for (int i = 0; i < grid.Length; i++) {
 			if (grid[i].position == n.position) {
 				continue;
@@ -282,7 +290,13 @@ public class Grid : MonoBehaviour {
 				Vector3 A = worldBottomLeft + Vector3.right * (grid [i].vertices [0] [0] * offSet) + Vector3.forward * (grid [i].vertices [0] [1] * offSet);
 				Vector3 B = worldBottomLeft + Vector3.right * (grid [i].vertices [1] [0] * offSet) + Vector3.forward * (grid [i].vertices [1] [1] * offSet);
 				Vector3 C = worldBottomLeft + Vector3.right * (grid [i].vertices [2] [0] * offSet) + Vector3.forward * (grid [i].vertices [2] [1] * offSet);
-				Gizmos.color = (grid[i].walkable)?Color.white:Color.red;
+				if (grid [i].stalkable) {
+					Gizmos.color = Color.green;
+				} else if (!grid [i].walkable) {
+					Gizmos.color = Color.red;
+				} else {
+					Gizmos.color = Color.white;
+				}
 				Gizmos.DrawLine (A, B);
 				Gizmos.DrawLine (A, C);
 				Gizmos.DrawLine (B, C);

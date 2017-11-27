@@ -109,7 +109,7 @@ public class APathFinding: MonoBehaviour {
 	void OnDrawGizmos() {
 		if (path != null) {
 			for (int i = 0; i < path.Count-1; i++) {
-				Gizmos.color = Color.green;
+				Gizmos.color = Color.yellow;
 				Gizmos.DrawLine (path[i].position, path[i+1].position);
 			}
 		}

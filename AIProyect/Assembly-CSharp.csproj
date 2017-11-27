@@ -54,14 +54,22 @@
      <Compile Include="Assets\APathFinding.cs" />
      <Compile Include="Assets\DynamicSeek.cs" />
      <Compile Include="Assets\EvadeObstacles.cs" />
+     <Compile Include="Assets\FieldOfView.cs" />
+     <Compile Include="Assets\FieldOfViewEditor.cs" />
      <Compile Include="Assets\Flee.cs" />
      <Compile Include="Assets\FollowPath.cs" />
      <Compile Include="Assets\Grid.cs" />
      <Compile Include="Assets\Node.cs" />
+     <Compile Include="Assets\PathWander.cs" />
      <Compile Include="Assets\PlayerMovement.cs" />
      <Compile Include="Assets\Seek.cs" />
      <Compile Include="Assets\ShootProyectile.cs" />
+     <Compile Include="Assets\Stalk.cs" />
+     <Compile Include="Assets\State.cs" />
+     <Compile Include="Assets\StateMachine.cs" />
+     <Compile Include="Assets\Transition.cs" />
      <Compile Include="Assets\WallAvoidance.cs" />
+     <Compile Include="Assets\WallAvoidancePlayer.cs" />
      <Compile Include="Assets\Wander.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

@@ -20,7 +20,7 @@ public class Wander : MonoBehaviour {
 	void Update () {
 		time += Time.deltaTime;
 		if (time >= interpolationPeriod) {
-			transform.rotation = Quaternion.AngleAxis (Random.Range (-1f, 1f) * maxRotation, transform.up);
+			transform.rotation = Quaternion.AngleAxis (30f, transform.up);
 			rb.velocity = maxSpeed * (transform.forward);
 			time = time - interpolationPeriod;
 		}
